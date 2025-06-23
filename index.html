@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fashion Haven - Premium Shoes & Clothing</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/script.js"></script>
+</head>
+<body>
+    <div class="social-icons">
+        <a href="#" class="icon facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="icon twitter"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="icon instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="icon pinterest"><i class="fab fa-pinterest-p"></i></a>
+        <a href="#" class="icon youtube"><i class="fab fa-youtube"></i></a>
+    </div>
+
+    <nav class="vertical-nav">
+        <div class="logo">
+            <h1>Fashion Haven</h1>
+        </div>
+        <ul>
+            <li><a href="index.html" class="nav-link active"><span>Home</span></a></li>
+            <li><a href="about.html" class="nav-link"><span>About</span></a></li>
+            <li><a href="discover.html" class="nav-link"><span>Discover</span></a></li>
+            <li><a href="contact.html" class="nav-link"><span>Contact</span></a></li>
+        </ul>
+        <div class="user-actions">
+            <a href="#" id="login-btn"><i class="fas fa-user"></i></a>
+            <a href="#" id="cart-btn"><i class="fas fa-shopping-cart"></i><span class="cart-count">0</span></a>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h2>Elevate Your Style</h2>
+                <p>Discover premium shoes and clothing that match your personality</p>
+                <button class="shop-now">Shop Now</button>
+            </div>
+        </section>
+
+        <section class="featured-products">
+            <h2>Featured Products</h2>
+            <div class="product-grid" id="featured-products">
+                <!-- Products will be loaded here via JavaScript -->
+            </div>
+        </section>
+
+        <section class="categories">
+            <div class="category shoes">
+                <h3>Shoes</h3>
+                <button class="explore">Explore</button>
+            </div>
+            <div class="category clothing">
+                <h3>Clothing</h3>
+                <button class="explore">Explore</button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Login Modal -->
+    <div class="modal" id="login-modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Login</h2>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="login-email">Email</label>
+                    <input type="email" id="login-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" required>
+                </div>
+                <button type="submit">Login</button>
+            </form>
+            <p>Don't have an account? <a href="#" id="show-register">Register</a></p>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal" id="register-modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Register</h2>
+            <form id="register-form">
+                <div class="form-group">
+                    <label for="register-username">Username</label>
+                    <input type="text" id="register-username" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-email">Email</label>
+                    <input type="email" id="register-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-password">Password</label>
+                    <input type="password" id="register-password" required>
+                </div>
+                <button type="submit">Register</button>
+            </form>
+            <p>Already have an account? <a href="#" id="show-login">Login</a></p>
+        </div>
+    </div>
+
+    <!-- Product Detail Modal -->
+    <div class="modal" id="product-modal">
+        <div class="modal-content product-detail">
+            <span class="close">&times;</span>
+            <div class="product-main">
+                <div class="product-image">
+                    <img id="modal-product-image" src="" alt="">
+                </div>
+                <div class="product-info">
+                    <h2 id="modal-product-name"></h2>
+                    <p class="price" id="modal-product-price"></p>
+                    <p class="description" id="modal-product-description"></p>
+                    <div class="variants" id="product-variants">
+                        <!-- Variants will be loaded here -->
+                    </div>
+                    <div class="quantity-selector">
+                        <button class="quantity-btn minus">-</button>
+                        <input type="number" value="1" min="1" id="product-quantity">
+                        <button class="quantity-btn plus">+</button>
+                    </div>
+                    <button class="add-to-cart" id="add-to-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+            <div class="related-products">
+                <h3>More Like This</h3>
+                <div class="product-grid" id="related-products">
+                    <!-- Related products will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Modal -->
+    <div class="modal" id="cart-modal">
+        <div class="modal-content cart-content">
+            <span class="close">&times;</span>
+            <h2>Your Cart</h2>
+            <div class="cart-items" id="cart-items">
+                <!-- Cart items will be loaded here -->
+            </div>
+            <div class="cart-summary">
+                <p>Total: <span id="cart-total">$0.00</span></p>
+                <button id="checkout-btn">Proceed to Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div class="modal" id="checkout-modal">
+        <div class="modal-content checkout-content">
+            <span class="close">&times;</span>
+            <h2>Checkout</h2>
+            <form id="checkout-form">
+                <div class="form-group">
+                    <label for="checkout-name">Full Name</label>
+                    <input type="text" id="checkout-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="checkout-email">Email</label>
+                    <input type="email" id="checkout-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="checkout-address">Shipping Address</label>
+                    <textarea id="checkout-address" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Payment Method</label>
+                    <div class="payment-methods">
+                        <label class="payment-option">
+                            <input type="radio" name="payment" value="mpesa" checked>
+                            <div class="payment-icon"><i class="fas fa-mobile-alt"></i></div>
+                            <span>M-Pesa</span>
+                        </label>
+                        <label class="payment-option">
+                            <input type="radio" name="payment" value="credit">
+                            <div class="payment-icon"><i class="far fa-credit-card"></i></div>
+                            <span>Credit Card</span>
+                        </label>
+                        <label class="payment-option">
+                            <input type="radio" name="payment" value="debit">
+                            <div class="payment-icon"><i class="fas fa-credit-card"></i></div>
+                            <span>Debit Card</span>
+                        </label>
+                    </div>
+                </div>
+                <div id="mpesa-details" class="payment-details">
+                    <p>You will receive an M-Pesa push notification to complete payment</p>
+                </div>
+                <div id="card-details" class="payment-details" style="display: none;">
+                    <div class="form-group">
+                        <label for="card-number">Card Number</label>
+                        <input type="text" id="card-number" placeholder="1234 5678 9012 3456">
+                    </div>
+                    <div class="form-group">
+                        <label for="card-expiry">Expiry Date</label>
+                        <input type="text" id="card-expiry" placeholder="MM/YY">
+                    </div>
+                    <div class="form-group">
+                        <label for="card-cvc">CVC</label>
+                        <input type="text" id="card-cvc" placeholder="123">
+                    </div>
+                </div>
+                <button type="submit" id="place-order-btn">Place Order</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Order Confirmation Modal -->
+    <div class="modal" id="confirmation-modal">
+        <div class="modal-content confirmation-content">
+            <span class="close">&times;</span>
+            <div class="confirmation-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h2>Order Confirmed!</h2>
+            <p>Your order #<span id="order-id"></span> has been placed successfully.</p>
+            <p>A confirmation has been sent to your email.</p>
+            <button id="continue-shopping">Continue Shopping</button>
+        </div>
+    </div>
+
+    
+</body>
+</html>
